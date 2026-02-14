@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Demo.DbConnection;
+using Demo.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +28,7 @@ namespace Demo.Windows
 
         private void ReadersBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            navFrame.NavigationService.Navigate(new ReadersPage());
         }
 
         private void BooksBtn_Click(object sender, RoutedEventArgs e)
