@@ -1,0 +1,61 @@
+﻿<Window x:Class="Demo.Windows.MenuLibrary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.Windows"
+        mc:Ignorable="d"
+        Title="MenuLibrary" Height="450" Width="800"
+        Background="Black">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                Content="Читатели"
+                Name="ReadersBtn"
+                FontWeight="Bold"
+                FontSize="30"
+                Background="Orange"
+                Foreground="Black" Click="ReadersBtn_Click"/>
+
+        <Button Grid.Row="1"
+                Content="Книги"
+                Name="BooksBtn"
+                FontWeight="Bold"
+                FontSize="30"
+                Background="Orange"
+                Foreground="Black" Click="BooksBtn_Click"/>
+
+        <Button Grid.Row="2"
+                Content="Авторы"
+                Name="AuthorsBtn"
+                FontWeight="Bold"
+                FontSize="30"
+                Background="Orange"
+                Foreground="Black" Click="AuthorsBtn_Click"/>
+
+        <Button Grid.Row="3"
+                Content="Выйти"
+                Name="ExitBtn"
+                FontWeight="Bold"
+                FontSize="30"
+                Background="Red"
+                Foreground="Black" Click="ExitBtn_Click"/>
+
+        <Frame Grid.Column="1"
+               Grid.ColumnSpan="3"
+               Grid.RowSpan="4"
+               Name="navFrame"/>
+    </Grid>
+</Window>

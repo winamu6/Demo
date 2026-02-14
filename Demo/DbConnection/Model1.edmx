@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DemoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="avtor">
+          <Key>
+            <PropertyRef Name="id_avtor" />
+          </Key>
+          <Property Name="id_avtor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nchar" MaxLength="10" />
+          <Property Name="data" Type="date" />
+          <Property Name="deathdate" Type="date" />
+        </EntityType>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="ID book" />
+          </Key>
+          <Property Name="ID book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="date" Type="date" />
+          <Property Name="id_avtor" Type="int" Nullable="false" />
+          <Property Name="id_janor" Type="int" Nullable="false" />
+          <Property Name="id_sheff" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="id_gender" />
+          </Key>
+          <Property Name="id_gender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="historiReader">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Id_book" Type="int" Nullable="false" />
+          <Property Name="id_readerticket" Type="int" Nullable="false" />
+          <Property Name="datestart" Type="date" />
+          <Property Name="dateend" Type="date" />
+          <Property Name="id_sotrydnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="janor">
+          <Key>
+            <PropertyRef Name="id_janor" />
+          </Key>
+          <Property Name="id_janor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="janor" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="reader">
+          <Key>
+            <PropertyRef Name="id_reader" />
+          </Key>
+          <Property Name="id_reader" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="phone" Type="nvarchar(max)" />
+          <Property Name="gmail" Type="nvarchar(max)" />
+          <Property Name="birthdate" Type="date" />
+        </EntityType>
+        <EntityType Name="readerticket">
+          <Key>
+            <PropertyRef Name="id_readerticket" />
+          </Key>
+          <Property Name="id_readerticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_reader" Type="int" Nullable="false" />
+          <Property Name="dateregist" Type="date" />
+          <Property Name="dateEnd" Type="date" />
+        </EntityType>
+        <EntityType Name="shelf">
+          <Key>
+            <PropertyRef Name="id_shelf" />
+          </Key>
+          <Property Name="id_shelf" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="columnY" Type="nvarchar(max)" />
+          <Property Name="RowX" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sotrydnik">
+          <Key>
+            <PropertyRef Name="id_sotrydnik" />
+          </Key>
+          <Property Name="id_sotrydnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="mail" Type="nvarchar(max)" />
+          <Property Name="phone" Type="nvarchar(max)" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_gender" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_book_avtor1">
+          <End Role="avtor" Type="Self.avtor" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avtor">
+              <PropertyRef Name="id_avtor" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="id_avtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_janor">
+          <End Role="janor" Type="Self.janor" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="janor">
+              <PropertyRef Name="id_janor" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="id_janor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_shelf">
+          <End Role="shelf" Type="Self.shelf" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shelf">
+              <PropertyRef Name="id_shelf" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="id_sheff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historiReader_book">
+          <End Role="book" Type="Self.book" Multiplicity="1" />
+          <End Role="historiReader" Type="Self.historiReader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="ID book" />
+            </Principal>
+            <Dependent Role="historiReader">
+              <PropertyRef Name="Id_book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historiReader_readerticket">
+          <End Role="readerticket" Type="Self.readerticket" Multiplicity="1" />
+          <End Role="historiReader" Type="Self.historiReader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="readerticket">
+              <PropertyRef Name="id_readerticket" />
+            </Principal>
+            <Dependent Role="historiReader">
+              <PropertyRef Name="id_readerticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historiReader_sotrydnik">
+          <End Role="sotrydnik" Type="Self.sotrydnik" Multiplicity="1" />
+          <End Role="historiReader" Type="Self.historiReader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sotrydnik">
+              <PropertyRef Name="id_sotrydnik" />
+            </Principal>
+            <Dependent Role="historiReader">
+              <PropertyRef Name="id_sotrydnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_readerticket_reader">
+          <End Role="reader" Type="Self.reader" Multiplicity="1" />
+          <End Role="readerticket" Type="Self.readerticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reader">
+              <PropertyRef Name="id_reader" />
+            </Principal>
+            <Dependent Role="readerticket">
+              <PropertyRef Name="Id_reader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sotrydnik_gender">
+          <End Role="gender" Type="Self.gender" Multiplicity="1" />
+          <End Role="sotrydnik" Type="Self.sotrydnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="sotrydnik">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sotrydnik_post">
+          <End Role="post" Type="Self.post" Multiplicity="1" />
+          <End Role="sotrydnik" Type="Self.sotrydnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="sotrydnik">
+              <PropertyRef Name="id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DemoModelContainer">
+          <EntitySet Name="avtor" EntityType="Self.avtor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="book" EntityType="Self.book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historiReader" EntityType="Self.historiReader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="janor" EntityType="Self.janor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="post" EntityType="Self.post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reader" EntityType="Self.reader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="readerticket" EntityType="Self.readerticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shelf" EntityType="Self.shelf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sotrydnik" EntityType="Self.sotrydnik" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_book_avtor1" Association="Self.FK_book_avtor1">
+            <End Role="avtor" EntitySet="avtor" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_janor" Association="Self.FK_book_janor">
+            <End Role="janor" EntitySet="janor" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_shelf" Association="Self.FK_book_shelf">
+            <End Role="shelf" EntitySet="shelf" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historiReader_book" Association="Self.FK_historiReader_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="historiReader" EntitySet="historiReader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historiReader_readerticket" Association="Self.FK_historiReader_readerticket">
+            <End Role="readerticket" EntitySet="readerticket" />
+            <End Role="historiReader" EntitySet="historiReader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historiReader_sotrydnik" Association="Self.FK_historiReader_sotrydnik">
+            <End Role="sotrydnik" EntitySet="sotrydnik" />
+            <End Role="historiReader" EntitySet="historiReader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_readerticket_reader" Association="Self.FK_readerticket_reader">
+            <End Role="reader" EntitySet="reader" />
+            <End Role="readerticket" EntitySet="readerticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sotrydnik_gender" Association="Self.FK_sotrydnik_gender">
+            <End Role="gender" EntitySet="gender" />
+            <End Role="sotrydnik" EntitySet="sotrydnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sotrydnik_post" Association="Self.FK_sotrydnik_post">
+            <End Role="post" EntitySet="post" />
+            <End Role="sotrydnik" EntitySet="sotrydnik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="avtor">
+          <Key>
+            <PropertyRef Name="id_avtor" />
+          </Key>
+          <Property Name="id_avtor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="data" Type="DateTime" Precision="0" />
+          <Property Name="deathdate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="book" Relationship="Self.FK_book_avtor1" FromRole="avtor" ToRole="book" />
+        </EntityType>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="ID_book" />
+          </Key>
+          <Property Name="ID_book" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="id_avtor" Type="Int32" Nullable="false" />
+          <Property Name="id_janor" Type="Int32" Nullable="false" />
+          <Property Name="id_sheff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="avtor" Relationship="Self.FK_book_avtor1" FromRole="book" ToRole="avtor" />
+          <NavigationProperty Name="janor" Relationship="Self.FK_book_janor" FromRole="book" ToRole="janor" />
+          <NavigationProperty Name="shelf" Relationship="Self.FK_book_shelf" FromRole="book" ToRole="shelf" />
+          <NavigationProperty Name="historiReader" Relationship="Self.FK_historiReader_book" FromRole="book" ToRole="historiReader" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="id_gender" />
+          </Key>
+          <Property Name="id_gender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sotrydnik" Relationship="Self.FK_sotrydnik_gender" FromRole="gender" ToRole="sotrydnik" />
+        </EntityType>
+        <EntityType Name="historiReader">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Id_book" Type="Int32" Nullable="false" />
+          <Property Name="id_readerticket" Type="Int32" Nullable="false" />
+          <Property Name="datestart" Type="DateTime" Precision="0" />
+          <Property Name="dateend" Type="DateTime" Precision="0" />
+          <Property Name="id_sotrydnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="book" Relationship="Self.FK_historiReader_book" FromRole="historiReader" ToRole="book" />
+          <NavigationProperty Name="readerticket" Relationship="Self.FK_historiReader_readerticket" FromRole="historiReader" ToRole="readerticket" />
+          <NavigationProperty Name="sotrydnik" Relationship="Self.FK_historiReader_sotrydnik" FromRole="historiReader" ToRole="sotrydnik" />
+        </EntityType>
+        <EntityType Name="janor">
+          <Key>
+            <PropertyRef Name="id_janor" />
+          </Key>
+          <Property Name="id_janor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="janor1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="book" Relationship="Self.FK_book_janor" FromRole="janor" ToRole="book" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sotrydnik" Relationship="Self.FK_sotrydnik_post" FromRole="post" ToRole="sotrydnik" />
+        </EntityType>
+        <EntityType Name="reader">
+          <Key>
+            <PropertyRef Name="id_reader" />
+          </Key>
+          <Property Name="id_reader" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="readerticket" Relationship="Self.FK_readerticket_reader" FromRole="reader" ToRole="readerticket" />
+        </EntityType>
+        <EntityType Name="readerticket">
+          <Key>
+            <PropertyRef Name="id_readerticket" />
+          </Key>
+          <Property Name="id_readerticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_reader" Type="Int32" Nullable="false" />
+          <Property Name="dateregist" Type="DateTime" Precision="0" />
+          <Property Name="dateEnd" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="historiReader" Relationship="Self.FK_historiReader_readerticket" FromRole="readerticket" ToRole="historiReader" />
+          <NavigationProperty Name="reader" Relationship="Self.FK_readerticket_reader" FromRole="readerticket" ToRole="reader" />
+        </EntityType>
+        <EntityType Name="shelf">
+          <Key>
+            <PropertyRef Name="id_shelf" />
+          </Key>
+          <Property Name="id_shelf" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="columnY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="book" Relationship="Self.FK_book_shelf" FromRole="shelf" ToRole="book" />
+        </EntityType>
+        <EntityType Name="sotrydnik">
+          <Key>
+            <PropertyRef Name="id_sotrydnik" />
+          </Key>
+          <Property Name="id_sotrydnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_gender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="gender" Relationship="Self.FK_sotrydnik_gender" FromRole="sotrydnik" ToRole="gender" />
+          <NavigationProperty Name="historiReader" Relationship="Self.FK_historiReader_sotrydnik" FromRole="sotrydnik" ToRole="historiReader" />
+          <NavigationProperty Name="post" Relationship="Self.FK_sotrydnik_post" FromRole="sotrydnik" ToRole="post" />
+        </EntityType>
+        <Association Name="FK_book_avtor1">
+          <End Role="avtor" Type="Self.avtor" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="avtor">
+              <PropertyRef Name="id_avtor" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="id_avtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_janor">
+          <End Role="janor" Type="Self.janor" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="janor">
+              <PropertyRef Name="id_janor" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="id_janor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_shelf">
+          <End Role="shelf" Type="Self.shelf" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shelf">
+              <PropertyRef Name="id_shelf" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="id_sheff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historiReader_book">
+          <End Role="book" Type="Self.book" Multiplicity="1" />
+          <End Role="historiReader" Type="Self.historiReader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="ID_book" />
+            </Principal>
+            <Dependent Role="historiReader">
+              <PropertyRef Name="Id_book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sotrydnik_gender">
+          <End Role="gender" Type="Self.gender" Multiplicity="1" />
+          <End Role="sotrydnik" Type="Self.sotrydnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gender">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="sotrydnik">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historiReader_readerticket">
+          <End Role="readerticket" Type="Self.readerticket" Multiplicity="1" />
+          <End Role="historiReader" Type="Self.historiReader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="readerticket">
+              <PropertyRef Name="id_readerticket" />
+            </Principal>
+            <Dependent Role="historiReader">
+              <PropertyRef Name="id_readerticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historiReader_sotrydnik">
+          <End Role="sotrydnik" Type="Self.sotrydnik" Multiplicity="1" />
+          <End Role="historiReader" Type="Self.historiReader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sotrydnik">
+              <PropertyRef Name="id_sotrydnik" />
+            </Principal>
+            <Dependent Role="historiReader">
+              <PropertyRef Name="id_sotrydnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sotrydnik_post">
+          <End Role="post" Type="Self.post" Multiplicity="1" />
+          <End Role="sotrydnik" Type="Self.sotrydnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="post">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="sotrydnik">
+              <PropertyRef Name="id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_readerticket_reader">
+          <End Role="reader" Type="Self.reader" Multiplicity="1" />
+          <End Role="readerticket" Type="Self.readerticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reader">
+              <PropertyRef Name="id_reader" />
+            </Principal>
+            <Dependent Role="readerticket">
+              <PropertyRef Name="Id_reader" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="avtor" EntityType="Self.avtor" />
+          <EntitySet Name="book" EntityType="Self.book" />
+          <EntitySet Name="gender" EntityType="Self.gender" />
+          <EntitySet Name="historiReader" EntityType="Self.historiReader" />
+          <EntitySet Name="janor" EntityType="Self.janor" />
+          <EntitySet Name="post" EntityType="Self.post" />
+          <EntitySet Name="reader" EntityType="Self.reader" />
+          <EntitySet Name="readerticket" EntityType="Self.readerticket" />
+          <EntitySet Name="shelf" EntityType="Self.shelf" />
+          <EntitySet Name="sotrydnik" EntityType="Self.sotrydnik" />
+          <AssociationSet Name="FK_book_avtor1" Association="Self.FK_book_avtor1">
+            <End Role="avtor" EntitySet="avtor" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_janor" Association="Self.FK_book_janor">
+            <End Role="janor" EntitySet="janor" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_shelf" Association="Self.FK_book_shelf">
+            <End Role="shelf" EntitySet="shelf" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historiReader_book" Association="Self.FK_historiReader_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="historiReader" EntitySet="historiReader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sotrydnik_gender" Association="Self.FK_sotrydnik_gender">
+            <End Role="gender" EntitySet="gender" />
+            <End Role="sotrydnik" EntitySet="sotrydnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historiReader_readerticket" Association="Self.FK_historiReader_readerticket">
+            <End Role="readerticket" EntitySet="readerticket" />
+            <End Role="historiReader" EntitySet="historiReader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historiReader_sotrydnik" Association="Self.FK_historiReader_sotrydnik">
+            <End Role="sotrydnik" EntitySet="sotrydnik" />
+            <End Role="historiReader" EntitySet="historiReader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sotrydnik_post" Association="Self.FK_sotrydnik_post">
+            <End Role="post" EntitySet="post" />
+            <End Role="sotrydnik" EntitySet="sotrydnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_readerticket_reader" Association="Self.FK_readerticket_reader">
+            <End Role="reader" EntitySet="reader" />
+            <End Role="readerticket" EntitySet="readerticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DemoModelContainer" CdmEntityContainer="DemoEntities">
+          <EntitySetMapping Name="avtor">
+            <EntityTypeMapping TypeName="DemoModel.avtor">
+              <MappingFragment StoreEntitySet="avtor">
+                <ScalarProperty Name="id_avtor" ColumnName="id_avtor" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="deathdate" ColumnName="deathdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="book">
+            <EntityTypeMapping TypeName="DemoModel.book">
+              <MappingFragment StoreEntitySet="book">
+                <ScalarProperty Name="ID_book" ColumnName="ID book" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_avtor" ColumnName="id_avtor" />
+                <ScalarProperty Name="id_janor" ColumnName="id_janor" />
+                <ScalarProperty Name="id_sheff" ColumnName="id_sheff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gender">
+            <EntityTypeMapping TypeName="DemoModel.gender">
+              <MappingFragment StoreEntitySet="gender">
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historiReader">
+            <EntityTypeMapping TypeName="DemoModel.historiReader">
+              <MappingFragment StoreEntitySet="historiReader">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id_book" ColumnName="Id_book" />
+                <ScalarProperty Name="id_readerticket" ColumnName="id_readerticket" />
+                <ScalarProperty Name="datestart" ColumnName="datestart" />
+                <ScalarProperty Name="dateend" ColumnName="dateend" />
+                <ScalarProperty Name="id_sotrydnik" ColumnName="id_sotrydnik" />
+                <ScalarProperty Name="coment" ColumnName="coment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="janor">
+            <EntityTypeMapping TypeName="DemoModel.janor">
+              <MappingFragment StoreEntitySet="janor">
+                <ScalarProperty Name="id_janor" ColumnName="id_janor" />
+                <ScalarProperty Name="janor1" ColumnName="janor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="post">
+            <EntityTypeMapping TypeName="DemoModel.post">
+              <MappingFragment StoreEntitySet="post">
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reader">
+            <EntityTypeMapping TypeName="DemoModel.reader">
+              <MappingFragment StoreEntitySet="reader">
+                <ScalarProperty Name="id_reader" ColumnName="id_reader" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="gmail" ColumnName="gmail" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="readerticket">
+            <EntityTypeMapping TypeName="DemoModel.readerticket">
+              <MappingFragment StoreEntitySet="readerticket">
+                <ScalarProperty Name="id_readerticket" ColumnName="id_readerticket" />
+                <ScalarProperty Name="Id_reader" ColumnName="Id_reader" />
+                <ScalarProperty Name="dateregist" ColumnName="dateregist" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shelf">
+            <EntityTypeMapping TypeName="DemoModel.shelf">
+              <MappingFragment StoreEntitySet="shelf">
+                <ScalarProperty Name="id_shelf" ColumnName="id_shelf" />
+                <ScalarProperty Name="columnY" ColumnName="columnY" />
+                <ScalarProperty Name="RowX" ColumnName="RowX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sotrydnik">
+            <EntityTypeMapping TypeName="DemoModel.sotrydnik">
+              <MappingFragment StoreEntitySet="sotrydnik">
+                <ScalarProperty Name="id_sotrydnik" ColumnName="id_sotrydnik" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

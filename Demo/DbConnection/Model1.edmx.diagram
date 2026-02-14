@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="935c4c39c8724eacbade61b061f3aacf" Name="Diagram1">
+        <EntityTypeShape EntityType="DemoModel.avtor" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.gender" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.historiReader" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.janor" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.post" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.reader" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.readerticket" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.shelf" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel.sotrydnik" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="DemoModel.FK_book_avtor1" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_book_janor" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_book_shelf" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_historiReader_book" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_sotrydnik_gender" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_historiReader_readerticket" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_historiReader_sotrydnik" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_sotrydnik_post" ManuallyRouted="false" />
+        <AssociationConnector Association="DemoModel.FK_readerticket_reader" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
